@@ -1,0 +1,5 @@
+{
+  "name": "Copy of Zenith - Task & Routine Manager",
+  "description": "A complete modern Task & Daily Routine Management PWA that works both online and offline. Features include a timeline-based schedule, task management with drag-and-drop, productivity graphs, local notifications, and customizable themes.",
+  "requestFramePermissions": []
+}

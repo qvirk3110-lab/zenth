@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zenith - Task & Routine Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1e293b">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "i18next": "https://aistudiocdn.com/i18next@^25.5.2",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "recharts": "https://aistudiocdn.com/recharts@^3.2.1",
+    "idb": "https://aistudiocdn.com/idb@^8.0.3",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.13",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.544.0",
+    "dayjs": "https://aistudiocdn.com/dayjs@^1.11.18",
+    "react-i18next": "https://aistudiocdn.com/react-i18next@^15.7.3",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "i18next-browser-languagedetector": "https://aistudiocdn.com/i18next-browser-languagedetector@^8.2.0"
+  }
+}
+</script>
+<style>
+      :root {
+        --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+        --font-serif: 'Georgia', 'Times New Roman', serif;
+        --font-mono: 'Menlo', 'Monaco', 'Courier New', monospace;
+      }
+
+      /* FONT SIZE */
+      .font-size-sm { font-size: 14px; }
+      .font-size-base { font-size: 16px; }
+      .font-size-lg { font-size: 18px; }
+
+      /* FONT FAMILY */
+      .font-sans { font-family: var(--font-sans); }
+      .font-serif { font-family: var(--font-serif); }
+      .font-mono { font-family: var(--font-mono); }
+
+      /* --- THEMES --- */
+      /* Dark (Default) */
+      .theme-dark {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-card: rgba(30, 41, 59, 0.5);
+        --bg-card-solid: #1e293b;
+        --border-color: #334155;
+        --text-primary: #f8fafc;
+        --text-secondary: #94a3b8;
+        --text-accent: #22d3ee;
+        --accent-primary: #0ea5e9;
+        --accent-primary-hover: #38bdf8;
+        --glow-color: #22d3ee;
+      }
+
+      /* Light */
+      .theme-light {
+        --bg-primary: #f1f5f9;
+        --bg-secondary: #ffffff;
+        --bg-card: rgba(255, 255, 255, 0.6);
+        --bg-card-solid: #ffffff;
+        --border-color: #cbd5e1;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-accent: #0891b2;
+        --accent-primary: #06b6d4;
+        --accent-primary-hover: #22d3ee;
+        --glow-color: #0891b2;
+      }
+
+      /* Gradient */
+      .theme-gradient {
+        --bg-primary: #111827;
+        --bg-secondary: #1f2937;
+        --bg-card: rgba(31, 41, 55, 0.6);
+        --bg-card-solid: #1f2937;
+        --border-color: #4b5563;
+        --text-primary: #f9fafb;
+        --text-secondary: #d1d5db;
+        --text-accent: #ec4899;
+        --accent-primary: #db2777;
+        --accent-primary-hover: #f472b6;
+        --glow-color: #ec4899;
+      }
+
+      /* Colorful */
+      .theme-colorful {
+        --bg-primary: #18181b;
+        --bg-secondary: #27272a;
+        --bg-card: rgba(39, 39, 42, 0.6);
+        --bg-card-solid: #27272a;
+        --border-color: #52525b;
+        --text-primary: #fafafa;
+        --text-secondary: #a1a1aa;
+        --text-accent: #f59e0b;
+        --accent-primary: #ea580c;
+        --accent-primary-hover: #f97316;
+        --glow-color: #f59e0b;
+      }
+      
+      /* Elegant */
+      .theme-elegant {
+        --bg-primary: #262626;
+        --bg-secondary: #404040;
+        --bg-card: rgba(64, 64, 64, 0.6);
+        --bg-card-solid: #404040;
+        --border-color: #525252;
+        --text-primary: #e5e5e5;
+        --text-secondary: #a3a3a3;
+        --text-accent: #d4d4d4;
+        --accent-primary: #a3a3a3;
+        --accent-primary-hover: #f5f5f5;
+        --glow-color: #e5e5e5;
+      }
+
+      /* Minimal */
+      .theme-minimal {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f9fafb;
+        --bg-card: rgba(249, 250, 251, 0.7);
+        --bg-card-solid: #f9fafb;
+        --border-color: #e5e7eb;
+        --text-primary: #111827;
+        --text-secondary: #6b7280;
+        --text-accent: #374151;
+        --accent-primary: #1f2937;
+        --accent-primary-hover: #374151;
+        --glow-color: #374151;
+      }
+      
+      /* High Contrast */
+      .theme-high-contrast {
+        --bg-primary: #000000;
+        --bg-secondary: #1a1a1a;
+        --bg-card: rgba(26, 26, 26, 0.7);
+        --bg-card-solid: #1a1a1a;
+        --border-color: #4d4d4d;
+        --text-primary: #ffffff;
+        --text-secondary: #cccccc;
+        --text-accent: #ffff00;
+        --accent-primary: #ffff00;
+        --accent-primary-hover: #e6e600;
+        --glow-color: #ffff00;
+      }
+
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-secondary);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--text-secondary);
+      }
+    </style>
+</head>
+<body class="">
+    <div id="root"></div>
+    <script type="text/babel" data-type="module" src="/index.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(registration => {
+            console.log('SW registered: ', registration);
+          }).catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+        });
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>
