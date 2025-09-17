@@ -9,16 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "i18next": "^25.5.2",
-    "react-dom": "^19.1.1",
-    "recharts": "^3.2.1",
-    "idb": "^8.0.3",
-    "framer-motion": "^12.23.13",
-    "lucide-react": "^0.544.0",
-    "dayjs": "^1.11.18",
-    "react-i18next": "^15.7.3",
     "react": "^19.1.1",
-    "i18next-browser-languagedetector": "^8.2.0"
+    "i18next": "23.11.5",
+    "react-i18next": "14.1.2",
+    "i18next-browser-languagedetector": "8.0.0",
+    "lucide-react": "0.395.0",
+    "framer-motion": "11.2.10",
+    "recharts": "2.12.7",
+    "idb": "8.0.0",
+    "dayjs": "1.11.11",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
